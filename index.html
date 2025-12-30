@@ -8,21 +8,37 @@
 </head>
 <body>
     <div class="card-container">
-    <div class="profile-card">
-        <img src="https://github.com/0xmattyiceee.png" alt="Profile Picture" class="profile-img">
-        
-        <h1>0xmattyiceee</h1>
-        <p class="tagline">Digital Architect & Mental Health Advocate</p>
-        
-        <p class="bio">
-            Building accessible web spaces and documenting the journey of a neurodivergent developer. 
-        </p>
+        <div class="profile-card">
+            <img src="https://github.com/0xmattyiceee.png" alt="Profile Picture" class="profile-img">
+            
+            <h1>0xmattyiceee</h1>
+            <p class="tagline"> ⚡️Digital Architect & Mental Health Advocate 💚</p>
+            
+            <p class="bio">
+                Building accessible web spaces 🕸️ and documenting 📄 the journey 🧭 of a neurodivergent developer 👨🏼‍💻. 
+            </p>
 
-        <div class="links">
-            <a href="https://github.com/0xmattyiceee" class="btn">GitHub</a>
-            <a href="#" class="btn secondary">Accessibility Log</a>
+            <div class="links">
+                <a href="https://github.com/0xmattyiceee" class="btn">GitHub</a>
+                <a href="#" id="logBtn" class="btn secondary">Accessibility Log</a>
+            </div>
         </div>
     </div>
-</div>
+
+    <div id="logModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Accessibility Goals</h2>
+            <hr style="border: 0.5px solid rgba(169, 112, 255, 0.3); margin-bottom: 20px;">
+            <ul style="line-height: 2;">
+                <li>🚀 Implement High-Contrast Mode</li>
+                <li>🎧 Add Screen Reader ARIA labels</li>
+                <li>⌨️ Optimize Keyboard Navigation</li>
+                <li>🧠 Cognitive-friendly UI design</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
