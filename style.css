@@ -1,12 +1,12 @@
 /* 1. The Background - Using a dark, modern gradient */
 body {
     margin: 0;
-    padding: 20px;           /* Adds a "safety zone" for mobile screens */
-    box-sizing: border-box;  /* Ensures padding doesn't break layout */
+    padding: 20px;
+    box-sizing: border-box;
     display: flex;
-    justify-content: center; /* Centers card horizontally */
-    align-items: center;     /* Centers card vertically */
-    min-height: 100vh;       /* Makes body full screen height */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     color: white;
@@ -14,19 +14,18 @@ body {
 
 /* 2. The Glass Card Effect */
 .profile-card {
-    background: rgba(255, 255, 255, 0.05); /* Very transparent white */
-    backdrop-filter: blur(15px);           /* The "frosted glass" look */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 2rem;
     border-radius: 20px;
     text-align: center;
     width: 320px;
-    max-width: 100%;                       /* Ensures it fits on mobile phones */
+    max-width: 100%;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smooth hover transition */
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Interaction: Card tilts and glows purple when you touch/hover it */
 .profile-card:hover {
     transform: translateY(-10px) scale(1.02);
     box-shadow: 0 20px 40px rgba(169, 112, 255, 0.2);
@@ -43,10 +42,10 @@ body {
 .profile-img {
     width: 120px;
     height: 120px;
-    border-radius: 50%; /* Makes it a circle */
-    border: 3px solid #A970FF; /* Using your signature purple color */
+    border-radius: 50%;
+    border: 3px solid #A970FF;
     margin-bottom: 1rem;
-    animation: float 3s ease-in-out infinite; /* Makes your ghost float */
+    animation: float 3s ease-in-out infinite;
     box-shadow: 0 0 20px rgba(169, 112, 255, 0.3);
 }
 
@@ -60,7 +59,7 @@ h1 { margin: 0; font-size: 1.5rem; }
     display: flex; 
     gap: 10px; 
     justify-content: center; 
-    flex-wrap: wrap; /* Wraps buttons on very small screens */
+    flex-wrap: wrap;
 }
 
 .btn {
@@ -79,9 +78,53 @@ h1 { margin: 0; font-size: 1.5rem; }
     color: white; 
 }
 
-/* Hover effect for buttons */
 .btn:hover { 
     transform: translateY(-3px); 
     opacity: 0.9; 
     box-shadow: 0 5px 15px rgba(169, 112, 255, 0.4);
+}
+
+/* 6. MODAL STYLES (The Accessibility Log Pop-up) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Darkens background */
+    backdrop-filter: blur(8px); /* Blurs the background card */
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    margin: 15% auto;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 80%;
+    max-width: 400px;
+    border-radius: 20px;
+    text-align: left;
+    color: white;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.close-btn {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #A970FF;
+    transition: 0.2s;
+}
+
+.close-btn:hover {
+    color: white;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #A970FF;
 }
