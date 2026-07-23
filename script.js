@@ -1,34 +1,18 @@
-// 1. Select the elements
-const modal = document.getElementById("logModal");
-const btn = document.getElementById("logBtn");
-const span = document.querySelector(".close-btn");
+// Click the .skr chip to copy the handle, with a brief toast + haptic tap.
+const chip = document.getElementById('skrChip');
+const toast = document.getElementById('copiedToast');
 
-// 2. Open the Modal with Haptic Feedback
-btn.onclick = function(e) {
-    e.preventDefault(); 
-    modal.style.display = "block";
-
-    // Haptic Vibration for mobile (vibrates for 50ms)
-    if (window.navigator.vibrate) {
-        window.navigator.vibrate(50); 
-    }
+if (chip && toast) {
+    chip.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText('0xmattyic333.skr');
+            toast.classList.add('show');
+            if (window.navigator.vibrate) {
+                window.navigator.vibrate(30);
+            }
+            setTimeout(() => toast.classList.remove('show'), 1800);
+        } catch (err) {
+            console.error('Copy failed:', err);
+        }
+    });
 }
-
-// 3. Close the Modal when clicking the "X"
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// 4. Close the Modal if clicking outside the box
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-
-// 5. Accessibility: Close Modal with "Escape" key
-document.addEventListener('keydown', function(event) {
-    if (event.key === "Escape") {
-        modal.style.display = "none";
-    }
-});

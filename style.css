@@ -1,130 +1,235 @@
-/* 1. The Background - Using a dark, modern gradient */
-body {
-    margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    color: white;
+/* Solana Seeker identity card — mirrors the dev-portfolio design system */
+:root {
+    --bg: #0b0b0f;
+    --text: #ededf2;
+    --muted: #9a9aab;
+    --purple: #9945ff;
+    --green: #14f195;
+    --gradient: linear-gradient(120deg, #9945ff 0%, #14f195 100%);
+    --card-bg: rgba(255, 255, 255, 0.04);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glow: 0 0 40px rgba(153, 69, 255, 0.28);
+    --radius: 24px;
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --mono: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-/* 2. The Glass Card Effect */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+        radial-gradient(circle at 15% 12%, rgba(153, 69, 255, 0.16), transparent 42%),
+        radial-gradient(circle at 85% 20%, rgba(20, 241, 149, 0.12), transparent 44%);
+    background-attachment: fixed;
+}
+
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; color: inherit; }
+
+.gradient-text {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.card-container { width: 100%; max-width: 420px; }
+
 .profile-card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 2rem;
-    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 44px 32px;
     text-align: center;
-    width: 320px;
-    max-width: 100%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    backdrop-filter: blur(14px);
+    box-shadow: var(--glow), 0 30px 60px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.profile-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(153, 69, 255, 0.16), transparent 60%);
+    pointer-events: none;
 }
 
 .profile-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(169, 112, 255, 0.2);
-    border: 1px solid rgba(169, 112, 255, 0.4);
+    transform: translateY(-6px);
+    border-color: rgba(153, 69, 255, 0.4);
+    box-shadow: 0 0 55px rgba(153, 69, 255, 0.4), 0 30px 60px rgba(0, 0, 0, 0.5);
 }
 
-/* 3. The Profile Image with Floating Animation */
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+.avatar-wrap {
+    position: relative;
+    width: 104px;
+    height: 104px;
+    margin: 0 auto 20px;
+    padding: 3px;
+    border-radius: 50%;
+    background: var(--gradient);
+    box-shadow: var(--glow);
 }
 
 .profile-img {
-    width: 120px;
-    height: 120px;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
-    border: 3px solid #A970FF;
-    margin-bottom: 1rem;
-    animation: float 3s ease-in-out infinite;
-    box-shadow: 0 0 20px rgba(169, 112, 255, 0.3);
+    object-fit: cover;
+    display: block;
+    border: 3px solid var(--bg);
 }
 
-/* 4. Typography styling */
-h1 { margin: 0; font-size: 1.5rem; }
-.tagline { color: #A970FF; font-weight: bold; margin-top: 5px; }
-.bio { font-size: 0.9rem; line-height: 1.5; color: #ccc; margin: 1.5rem 0; }
+.skr-chip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 20px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--glass-border);
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
 
-/* 5. The Buttons */
-.links { 
-    display: flex; 
-    gap: 10px; 
-    justify-content: center; 
+.skr-chip:hover { border-color: var(--purple); transform: translateY(-1px); }
+
+.skr-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 10px var(--green);
+}
+
+.skr-handle { color: var(--text); }
+
+.skr-verified {
+    padding-left: 8px;
+    border-left: 1px solid var(--glass-border);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--green);
+}
+
+.role {
+    position: relative;
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 12px;
+}
+
+.bio {
+    position: relative;
+    color: var(--muted);
+    font-size: 0.98rem;
+    margin-bottom: 22px;
+}
+
+.bio strong { color: var(--text); font-weight: 600; }
+
+.tags {
+    position: relative;
+    display: flex;
     flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 28px;
+}
+
+.tag {
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+}
+
+.links {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .btn {
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    transition: 0.3s;
-    background: #A970FF; 
-    color: white;
+    display: block;
+    padding: 13px 20px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-.btn.secondary { 
-    background: rgba(255, 255, 255, 0.1); 
-    color: white; 
+.btn-primary {
+    background: var(--gradient);
+    color: #000;
+    box-shadow: var(--glow);
 }
 
-.btn:hover { 
-    transform: translateY(-3px); 
-    opacity: 0.9; 
-    box-shadow: 0 5px 15px rgba(169, 112, 255, 0.4);
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 55px rgba(153, 69, 255, 0.45); }
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--glass-border);
+    color: var(--text);
 }
 
-/* 6. MODAL STYLES (The Accessibility Log Pop-up) */
-.modal {
-    display: none; /* Hidden by default */
+.btn-secondary:hover { border-color: var(--purple); transform: translateY(-2px); }
+
+.footer-note {
+    position: relative;
+    margin-top: 26px;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+}
+
+.copied-toast {
     position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Darkens background */
-    backdrop-filter: blur(8px); /* Blurs the background card */
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    padding: 10px 20px;
+    border-radius: 999px;
+    background: var(--gradient);
+    color: #000;
+    font-weight: 600;
+    font-size: 0.85rem;
+    box-shadow: var(--glow);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.modal-content {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    margin: 15% auto;
-    padding: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    width: 80%;
-    max-width: 400px;
-    border-radius: 20px;
-    text-align: left;
-    color: white;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-}
+.copied-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-.close-btn {
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #A970FF;
-    transition: 0.2s;
-}
-
-.close-btn:hover {
-    color: white;
-}
-
-.modal-content h2 {
-    margin-top: 0;
-    color: #A970FF;
+@media (max-width: 420px) {
+    .profile-card { padding: 36px 22px; }
+    .role { font-size: 1.6rem; }
 }
